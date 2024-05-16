@@ -5,6 +5,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { ObservablesservicesService } from '../../services/observablesservices.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ui-login',
@@ -27,9 +29,12 @@ export class UiLoginComponent implements OnInit {
   hidePassword: boolean = true;
   userErrors = '';
   passwordErrorsText = '';
+  sessionValue: boolean = false;
 
   constructor(
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private observableService: ObservablesservicesService,
+    private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
       user: new FormControl(null, [Validators.email, Validators.required]),
@@ -38,7 +43,14 @@ export class UiLoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      
+    this.observableService.sessionObs.subscribe((value: boolean) => {
+      this.sessionValue = value;
+    })
+  }
+
+  changeSessionStatus (): void {
+    this.sessionValue = !this.sessionValue
+    this.observableService.updateSessionValue(this.sessionValue);
   }
 
   onSubmit(valorFormulario: any) {
@@ -56,6 +68,11 @@ export class UiLoginComponent implements OnInit {
       if (passwordError.required) {
         this.passwordErrorsText = 'You must enter a password'
       }
+    }
+
+    if (this.loginForm.get('user').value === 'aj.rangelse@gmail.com' && this.loginForm.get('password').value === 'xand43cx,.,.') {
+      this.changeSessionStatus()
+      this.router.navigate(['/loaded-pokemon'])
     }
   }
 }
