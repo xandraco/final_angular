@@ -1,1 +1,33 @@
-<p>ui-login works!</p>
+<div class="login-">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">
+        <mat-form-field appearance="fill">
+          <mat-label>User</mat-label>
+          <input matInput placeholder="User" formControlName="user" name="user" required>
+          <mat-hint>Your Username</mat-hint>
+          <mat-error>
+            {{ userErrors }}
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" required>
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Y0ur P455w0rd</mat-hint>
+          <mat-error>
+            {{ passwordErrorsText }}
+          </mat-error>
+        </mat-form-field>
+        <br>
+        <button mat-flat-button color="primary" type="submit">Login</button>
+      </form>
+    </mat-card-content>
+  </mat-card>  
+</div>

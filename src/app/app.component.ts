@@ -18,6 +18,7 @@ import { FormBuilder, FormControl, FormsModule, ReactiveFormsModule, Validators 
     UiFooterComponent,
     RouterLink,
     MatButtonModule,
+    MatGridListModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
