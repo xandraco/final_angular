@@ -18,7 +18,6 @@ class PermissionsService {
     })
 
     if(insertedRoute == 'loaded-pokemon' && !this.sessionValue) {
-      alert('Login to access the table')
       return false;
     } else {
       return true;

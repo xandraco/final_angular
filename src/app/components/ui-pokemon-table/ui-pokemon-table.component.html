@@ -1,1 +1,40 @@
-<p>ui-pokemon-table works!</p>
+<div class="pokemon-table-container" style="padding-bottom: 3rem; padding-left: 5rem; padding-right: 5rem;">
+
+  <button mat-raised-button (click)="openNewPokemonDialog()" style="padding: 1rem ;">New Pokemon</button>
+
+  <table mat-table [dataSource]="pokemonSource">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let pokemon"> {{ pokemon.id }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>IMAGEN</th>
+      <td mat-cell *matCellDef="let pokemon">
+        <img [src]="pokemon.gif" alt="">
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>NOMBRE</th>
+      <td mat-cell *matCellDef="let pokemon"> {{ pokemon.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+      <th mat-header-cell *matHeaderCellDef>URL</th>
+      <td mat-cell *matCellDef="let pokemon"> {{ pokemon.url }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef>BORRAR</th>
+      <td mat-cell *matCellDef="let pokemon">
+        <button mat-icon-button (click)="deletePokemon(pokemon.name)">
+          <mat-icon>delete</mat-icon>
+        </button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+  </table>
+</div>

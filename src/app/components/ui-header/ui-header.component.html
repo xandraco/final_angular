@@ -8,6 +8,10 @@
         class="logo"
       >
     </mat-grid-tile>
-    <mat-grid-tile></mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-icon-button *ngIf="sessionValue" (click)="changeSessionStatus()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </mat-grid-tile>
   </mat-grid-list>
 </div>

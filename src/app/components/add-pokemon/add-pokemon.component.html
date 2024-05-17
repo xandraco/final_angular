@@ -1,0 +1,12 @@
+
+<h2 mat-dialog-title>New Pokemon</h2>
+<mat-dialog-content>
+  <p>Pokemon Name</p>
+  <mat-form-field>
+    <input matInput placeholder="Name" [(ngModel)]="newPokemon.name">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+  <button mat-button (click)="onSendClick()" cdkFocusInitial>Guardar</button>
+</mat-dialog-actions>
